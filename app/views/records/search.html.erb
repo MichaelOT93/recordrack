@@ -1,0 +1,24 @@
+<table class = "records">
+<% @records.each do |record| %>
+    <tr>
+        <td>
+            <div class="title">
+                <%= record.title %>
+            </div>
+            <div class="artist">
+                <%= record.artist %>
+            </div>
+            <div class="description">
+                <%= record.description %>
+            </div>
+            <div class="release">
+                <%= record.year %>
+            </div>
+            <div class="price">
+                <%= number_to_currency(record.price, :unit => "€") %>
+            </div>
+        </div>
+    </td>
+</tr>
+<% end %>
+</table>

@@ -1,0 +1,18 @@
+
+
+<h1> Welcome to The Record Rack </h1>
+
+
+    
+    <% if session[:login] == nil %>
+        <%= link_to "Log In", login_path %>
+    <% elsif session[:login] == 1 %>
+        <%= link_to "Log Out", logout_path%>
+    <% end %>
+
+<h3>Search by Genre</h3>
+
+<%=render 'layouts/search'%>
+
+<a href="/records"><h2>Click here to see our Top Records</h2></a>
+
