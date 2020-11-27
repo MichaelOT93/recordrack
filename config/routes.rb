@@ -12,6 +12,13 @@ Rails.application.routes.draw do
 
   get '/logout' => 'user#logout'
 
-  get '/signup' => 'user#new'
+  get '/signup' => 'users#new'
+
+  get '/users' => 'users#index'
+
+
+
+
+  resources :users
   
 end
