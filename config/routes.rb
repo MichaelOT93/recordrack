@@ -11,5 +11,7 @@ Rails.application.routes.draw do
   get '/login' => 'user#login'
 
   get '/logout' => 'user#logout'
+
+  get '/signup' => 'user#new'
   
 end
