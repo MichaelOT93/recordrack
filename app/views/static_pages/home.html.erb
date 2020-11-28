@@ -17,5 +17,9 @@
 
 <%=render 'layouts/search'%>
 
+<% if logged_in? %>
+    <%= render 'records/record_form' %>
+<% end %>
+
 <a href="/records"><h2>Click here to see our Top Records</h2></a>
 

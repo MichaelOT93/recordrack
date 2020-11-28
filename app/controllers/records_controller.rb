@@ -1,5 +1,6 @@
 class RecordsController < ApplicationController
-  before_action :set_record, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user, only: [:create, :update, :destroy]
+  before_action :correct_user, only: [:update, :destroy]
 
   # GET /records
   # GET /records.json
@@ -26,35 +27,32 @@ class RecordsController < ApplicationController
 
   # GET /records/1/edit
   def edit
+    @record = Record.find(params[:id])
   end
 
   # POST /records
   # POST /records.json
   def create
-    @record = Record.new(record_params)
+    @record = current_user.records.build(record_params)
+      if @record.save 
+        flash[:success] = "Record was successfully created"
+        redirect_to root_url
 
-    respond_to do |format|
-      if @record.save
-        format.html { redirect_to @record, notice: 'Record was successfully created.' }
-        format.json { render :show, status: :created, location: @record }
-      else
-        format.html { render :new }
-        format.json { render json: @record.errors, status: :unprocessable_entity }
+      else 
+        render 'static_pages/home'
       end
-    end
+
   end
 
   # PATCH/PUT /records/1
   # PATCH/PUT /records/1.json
   def update
-    respond_to do |format|
-      if @record.update(record_params)
-        format.html { redirect_to @record, notice: 'Record was successfully updated.' }
-        format.json { render :show, status: :ok, location: @record }
-      else
-        format.html { render :edit }
-        format.json { render json: @record.errors, status: :unprocessable_entity }
-      end
+    @record = Record.find(params[:id])
+    if @record.update_attributes(record_params)
+        flash[:success] = "Record updated"
+        redirect_to @record
+    else
+        render 'edit'
     end
   end
 
@@ -62,20 +60,20 @@ class RecordsController < ApplicationController
   # DELETE /records/1.json
   def destroy
     @record.destroy
-    respond_to do |format|
-      format.html { redirect_to records_url, notice: 'Record was successfully destroyed.' }
-      format.json { head :no_content }
+    flash[:success] = "Record deleted"
+    redirect_to request.referrer || root_url
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_record
-      @record = Record.find(params[:id])
-    end
+    
+  def correct_user
+    @record = current_user.records.find_by(id: params[:id])
+        redirect_to root_url if @record.nil?
+  end
 
     # Only allow a list of trusted parameters through.
     def record_params
       params.require(:record).permit(:title, :artist, :genre, :description, :year, :price)
     end
-end
+

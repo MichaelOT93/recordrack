@@ -19,11 +19,12 @@ Rails.application.routes.draw do
 
   get '/users' => 'users#index'
 
-  
+
 
 
 
 
   resources :users
+  resources :records, only: [:create, :destroy]
   
 end
