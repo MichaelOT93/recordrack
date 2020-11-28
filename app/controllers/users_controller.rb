@@ -15,8 +15,9 @@ class UsersController < ApplicationController
     def create 
         @user = User.new(user_params)
         
-           
+        
         if @user.save
+            log_in @user
             redirect_to @user
             flash[:success] = 'Welcome on Board!'
             
@@ -26,17 +27,6 @@ class UsersController < ApplicationController
     end
 
 
-    def login 
-        session[:login] = 1
-        flash[:notice] = "You have successfully Logged In"
-        redirect_to root_url
-    end
-
-    def logout
-        session[:login] = nil
-        flash[:notice] = "Until we meet again!"
-        redirect_to root_url
-    end
 
     private 
 
