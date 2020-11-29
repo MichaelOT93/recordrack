@@ -11,13 +11,18 @@ class RecordsController < ApplicationController
   end
 
   def search
-    search_term = "%#{params[:q]}%"
-    @records = Record.where("genre like ?", search_term)
+    if params[:search].blank?  
+      redirect_to(root_path, alert: "Empty field!") and return  
+    else  
+      @parameter = params[:search].downcase  
+      @records = Record.all.where("lower(title) LIKE :search OR lower(artist) LIKE :search" , search: "%#{@parameter}%")
+    end  
   end
 
   # GET /records/1
   # GET /records/1.json
   def show
+    @record = Record.find(params[:id])
   end
 
   # GET /records/new

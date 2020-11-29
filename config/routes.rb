@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   get  '/home' => 'static_pages#home'
 
-  post '/search' => 'records#search'
+  get '/search' => 'records#search'
 
   get '/login' => 'sessions#new'
 

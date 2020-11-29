@@ -1,6 +1,17 @@
 
-<%= form_tag("/search", :method => "post") do %>
-    <%= label_tag(:q, "Search: ")%>
-    <%= text_field_tag(:q) %>
-<%= submit_tag("Search") %>
-<% end %>
+
+
+    <%= form_tag("/search",  :method => "get") do %>
+    <div class="">
+
+    <%= search_field_tag :search, params[:search], placeholder: "Search", class: "form-control input-group mb-4 border rounded-pill p-1" do %>
+
+        <%= button_tag :submit_tag do %>
+            <i class="fa fa-search"></i>
+        <% end %>
+
+    <% end %>
+
+    </div>
+    <% end %>
+

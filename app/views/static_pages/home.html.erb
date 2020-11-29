@@ -1,25 +1,23 @@
 
 
-<h1> Welcome to The Record Rack </h1>
+
+    <div class="row">
+        <div class="col-md-2">
+            <p>this should be blank</p>
+        </div>
+        <div class="col-md-10 border-bottom border-dark">
+            <h3>Genres</h3>
+        </div>
+
+    </div>
 
 
-    
-    <% if logged_in? %>
-        <%= link_to "Log Out", logout_path, 
-            method: :delete %>
-    <% else %>
-        <%= link_to "Log In", login_path %>
-    <% end %>
 
-    <%= link_to "Signup", signup_path %>
 
-<h3>Search by Genre</h3>
-
-<%=render 'layouts/search'%>
 
 <% if logged_in? %>
     <%= render 'records/record_form' %>
 <% end %>
 
-<a href="/records"><h2>Click here to see our Top Records</h2></a>
+
 

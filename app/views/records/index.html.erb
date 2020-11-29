@@ -26,7 +26,7 @@
         <td><%= record.price %></td>
 
        
-        <td><%= link_to 'Show', record %></td>
+        <td><%= link_to 'More Details', record %></td>
         <% if current_user? (record.user) %>
         <td><%= link_to 'Edit', edit_record_path(record) %></td>
         <td><%= link_to 'Destroy', record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -39,6 +39,5 @@
 
 <br>
 
-<a href="/home"><h2>Home</h2></a>
 
 

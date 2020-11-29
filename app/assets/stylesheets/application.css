@@ -13,3 +13,55 @@
  *= require_tree .
  *= require_self
  */
+
+ @font-face {
+     font-family: 'Montserrat';
+     src: url('path-to/../../fonts/Montserrat-Light.ttf')
+ }
+
+body {
+    overflow-x: hidden;
+    font-family: 'Montserrat';
+}
+
+h1 {
+    font-family: 'Montserrat';
+}
+
+.sidenav{
+    background-color: #363333;
+    color: white;
+    height: 100vh;
+}
+
+.nav {
+    
+    padding-top: 50px;
+}
+
+.nav-item {
+    width: 50%;
+    height: 80px;
+    margin-left: 50%;
+}
+
+.nav-link {
+    font-size: 18px;
+    text-align: right;
+    font-family: 'Montserrat'
+}
+
+a.nav-link {
+    color: white;
+    text-decoration: none;
+}
+
+a.nav-link:hover {
+    background-color: #ffffff;
+    color: #363333;
+}
+
+.search-bar {
+    padding-top: 100px;
+    padding-left: 50px;
+}

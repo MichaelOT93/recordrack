@@ -4,12 +4,66 @@
     <title>The Record Rack</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body>    
+      <div class="row">
+        <div class="sidenav col-md-3">
+        <h1>The Record Rack </h1>
+
+          <div class="search-bar">
+            <%=render 'layouts/search'%>
+          </div>
+        
+            <ul class="nav flex-column">
+
+              
+                  <li class="nav-item">
+                      <%= link_to "Sell a Record", new_record_path, class:"nav-link" %>
+                  </li>
+                  <li class="nav-item">
+                      <%= link_to "Most Popular", records_path, class:"nav-link" %>
+                  </li>
+                  <li class="nav-item">
+                    <% if logged_in? %>
+                    <%= link_to "Log Out", logout_path, class: "nav-link", 
+                      method: :delete %>
+                    <% else %>
+                    <%= link_to "Log In", login_path, class: "nav-link" %>
+                    <% end %>
+                  </li>
+                  <li class="nav-item">
+                      <%= link_to "Signup", signup_path, class:"nav-link" %>
+                  </li>
+            </ul>
+          </div>
+        
+
+            <div class="col-md-9">
+                <div class="row">
+                  <div class="col-md-9">
+                  </div>
+                  <div class="col-md-3">
+                    <ul> 
+                        <li>
+                          <a href="/home">Home</a>
+                        </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="row">
+                    <%= yield %>
+                </div>
+            </div>
+          
+
+
+    
+    
   </body>
 </html>
