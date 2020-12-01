@@ -1,8 +1,11 @@
 class ApplicationController < ActionController::Base
 
     protect_from_forgery with: :exception
+    include CurrentCart
+    before_action :set_cart
 
     include SessionsHelper
+    include ApplicationHelper
 
     def logged_in_user
         unless logged_in?

@@ -24,6 +24,7 @@
         <td><%= record.description %></td>
         <td><%= record.year %></td>
         <td><%= record.price %></td>
+        <%= button_to 'Add to Cart', line_items_path(record_id: record), class: 'button is-warning add-to-cart' %>
 
        
         <td><%= link_to 'More Details', record %></td>

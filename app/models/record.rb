@@ -1,5 +1,8 @@
 class Record < ApplicationRecord
+    before_destroy :not_references_by_any_line_item
     belongs_to :user
+
+    has_many :line_items
 
     default_scope -> { order(created_at: :desc)}
 
@@ -10,6 +13,12 @@ class Record < ApplicationRecord
     validates :price, presence: true
 
 
-    
+    private
+    def not_references_by_any_line_item
+        unless line_items.empty?
+            errors.add(:base, "Line items present")
+            throw :abort
+        end
+    end
     
 end

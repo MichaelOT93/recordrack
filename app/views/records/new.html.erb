@@ -1,5 +1,11 @@
+
+
 <% provide(:title, 'New Record')%>
 
-<%= render 'records/record_form' %>
+<div class="col-md-12 form-container">
+        <div class="row new-record">
+            <%= render 'records/record_form' %>
+        </div>
 
-<%= link_to 'Back', records_path %>
+            <%= link_to 'Back', records_path %>
+</div>

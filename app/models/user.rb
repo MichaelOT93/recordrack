@@ -1,6 +1,8 @@
 class User < ApplicationRecord
 
     has_many :records, dependent: :destroy 
+    has_one :cart
+    has_many :line_items, :through => :cart
 
     attr_accessor :remember_token
 

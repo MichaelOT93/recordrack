@@ -1,0 +1,9 @@
+<div class="cart">
+
+    <%= render(@cart.line_items) %>
+
+    <%= button_to 'Empty Cart', @cart, method: :delete, data: { confirm: "Are you sure?" }, class: "button is-danger"%>
+
+    
+
+</div>
