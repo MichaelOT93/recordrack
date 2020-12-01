@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :genres
   get 'cart/index'
   get 'sessions/new'
   resources :records
@@ -19,6 +20,8 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'
 
   get '/users' => 'users#index'
+  
+  get 'genre/:title' => 'static_pages#genre'
 
 
 

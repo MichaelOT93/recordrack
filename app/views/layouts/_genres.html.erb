@@ -1,0 +1,36 @@
+<div class="col-md-10 border-bottom border-dark">
+            
+        
+        <h1>Genres</h1>
+
+        
+
+</div>
+<br>
+
+ <div>  
+        <% @genres.limit(12).order(:id).each_slice(3) do |slice| %>
+        <div class="row">
+            <% slice.each do |genre| %>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                                
+
+                            
+
+                        
+                        
+                            
+                            
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <h3><%= genre.title %></h3>
+                        </div>
+                    </div>
+                </div>
+                <% end %>
+            
+        </div>
+    <% end %>
