@@ -1,4 +1,4 @@
-<div class="col-md-10 border-bottom border-dark">
+<div class="col-md-12 border-bottom border-dark">
             
         
         <h1>Genres</h1>
@@ -6,31 +6,36 @@
         
 
 </div>
-<br>
 
- <div>  
-        <% @genres.limit(12).order(:id).each_slice(3) do |slice| %>
+<div class="col-md-12">
+
+ <div class="genres pt-3">  
+        <% @genres.limit(16).order(:id).each_slice(4) do |slice| %>
         <div class="row">
             <% slice.each do |genre| %>
                 <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body">
+                
+                    <div class="card text-center">
+                    
                                 
 
                             
+                            
+                                <% if genre.image_url.attached? %>
+                                    <a href="/genre/<%= genre.title %>" class="button">
+                                        <img src="<%=(url_for(genre.image_url))%>" class="card-img-top">
+                                        <div class="card-img-overlay">
+                                            <h3 class="cart-title"><%= genre.title %></h3>
+                                        </div>
+                                    </a>
 
-                        
-                        
-                            
-                            
-                            </p>
-                        </div>
-                        <div class="card-footer">
-                            <h3><%= genre.title %></h3>
-                        </div>
+                                <% end %>
+
                     </div>
                 </div>
                 <% end %>
             
         </div>
     <% end %>
+
+</div>

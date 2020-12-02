@@ -1,24 +1,61 @@
-<table class = "records">
-<% @records.each do |record| %>
-    <tr>
-        <td>
-            <div class="title">
-                <%= record.title %>
-            </div>
-            <div class="artist">
-                <%= record.artist %>
-            </div>
-            <div class="description">
-                <%= record.description %>
-            </div>
-            <div class="release">
-                <%= record.year %>
-            </div>
-            <div class="price">
-                <%= number_to_currency(record.price, :unit => "€") %>
-            </div>
+
+
+ <div class="col-md-12 border-bottom border-dark">
+            
+        
+        <h1>Results:</h1>
+
+        
+
+</div>
+
+
+
+
+
+ <div class="col-md-12">
+
+
+
+
+  <div class="records pt-5">  
+        <% @records.limit(24).order(:id).each_slice(4) do |slice| %>
+        <div class="row">
+            <% slice.each do |record| %>
+                <div class="col-md-3">
+                    <div class="card">
+                            
+                                    <% if record.album_cover.attached? %>
+                                        <img src="<%=(url_for(record.album_cover))%>" class="card-img-top">
+                                    <% end %>
+                            
+                        <div class="card-body">
+                                <div class="card-title">
+                                
+                                    <h4><%= record.title %></h4>
+                                    <h5><%= record.artist %></h5>
+                                </div>
+
+                
+                                
+                            
+                            <%= link_to 'More Details', record, :class =>"button", :role=>"button" %>
+                            
+
+                        
+                        
+                            
+                            
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <%= number_to_currency(record.price, :unit => "€") %>
+                        </div>
+                    </div>
+                    </div>
+                <% end %>
+            
         </div>
-    </td>
-</tr>
-<% end %>
-</table>
+    <% end %>
+
+</div>

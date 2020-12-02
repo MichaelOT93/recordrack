@@ -1,6 +1,7 @@
 class Record < ApplicationRecord
     before_destroy :not_references_by_any_line_item
     belongs_to :user
+    has_one_attached :album_cover
 
     has_many :line_items
 

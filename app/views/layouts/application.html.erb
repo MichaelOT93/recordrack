@@ -14,8 +14,9 @@
   <body>    
       <div class="row">
         <div class="sidenav col-md-3">
-        <h1>The Record Rack </h1>
-
+          <div class="logo-container">
+            <a href="/home" class="logo-link"><%= image_tag("whitelogo.png", :alt => "recordrack-white-logo", :class => "logo") %></a>
+          </div>
           <div class="search-bar">
             <%=render 'layouts/search'%>
           </div>
@@ -24,41 +25,57 @@
 
               
                   <li class="nav-item">
-                      <%= link_to "Sell a Record", new_record_path, class:"nav-link" %>
+                      <%= link_to "Sell a Record", new_record_path, class:"nav-link sell" %>
                   </li>
+                  <% if logged_in? %>
+                    <li class="nav-item">
+                        <%= link_to "Dashboard", dashboard_path(current_user), class:"nav-link popular" %>
+                    </li>
+                  <% else %>
                   <li class="nav-item">
-                      <%= link_to "Most Popular", records_path, class:"nav-link" %>
+                        <%= link_to "Popular Records", records_path, class:"nav-link popular" %>
                   </li>
+                  <% end %>
+
                   <li class="nav-item">
                     <% if logged_in? %>
-                    <%= link_to "Log Out", logout_path, class: "nav-link", 
+                    <%= link_to "Log Out", logout_path, class: "nav-link log", 
                       method: :delete %>
                     <% else %>
-                    <%= link_to "Log In", login_path, class: "nav-link" %>
+                    <%= link_to "Log In", login_path, class: "nav-link log" %>
                     <% end %>
                   </li>
                   <li class="nav-item">
-                      <%= link_to "Signup", signup_path, class:"nav-link" %>
+                      <%= link_to "Signup", signup_path, class:"nav-link sign" %>
                   </li>
+                  
+                  <% if current_user && current_user.admin? %>
                   <li class="nav-item">
-                  <%= link_to 'Genre', new_genre_path, class: "nav-link", :role=>"button"  %>
+                      <%= link_to 'Add a new Genre', new_genre_path, class: "nav-link addGenre" %>
                   </li>
+                  <% end %>
             </ul>
           </div>
         
+            <div class="col-md-4">
+            </div>
 
-            <div class="col-md-9">
+            <div class="col-md-8">
                 <div class="row">
                   <div class="col-md-9">
                   </div>
                   <div class="col-md-3">
-                    <ul> 
-                        <li>
-                          <a href="/home">Home</a>
-                        </li>
-                        <li>
+                  
+                    <ul class="tiny-nav">
+                      <div class="row"> 
+                          <li class="tiny-nav-item">
+                            <a href="/home">Home</a>
+                          </li>
+                      
+                        <li class="tiny-nav-item">
                           <%= link_to "View Cart", "/cart" %>
                           </li>
+                      </div>
                     </ul>
                   </div>
                 </div>

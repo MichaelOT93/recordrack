@@ -56,4 +56,6 @@ class LineItemsController < ApplicationController
     def line_item_params
         params.require(:line_item).permit(:record_id)
     end
+
+    
 end

@@ -16,22 +16,38 @@
 
  @font-face {
      font-family: 'Montserrat';
-     src: url('path-to/../../fonts/Montserrat-Light.ttf')
+     src: url('path-to/../../fonts/Montserrat-Light.ttf');
  }
 
 body {
     overflow-x: hidden;
     font-family: 'Montserrat';
+
 }
 
 h1 {
     font-family: 'Montserrat';
 }
 
-.sidenav{
+
+.logo {
+    width: 100%;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-top: 60px;
+}
+
+a.logo-link:hover {
+    background-color: #363333;
+}
+
+.sidenav {
     background-color: #363333;
     color: white;
     height: 100vh;
+    position: fixed  !important;
+    z-index: 10;
+    padding-right: 0 !important;
 }
 
 .nav {
@@ -54,15 +70,120 @@ h1 {
 a.nav-link {
     color: white;
     text-decoration: none;
+    height: 100%;
 }
 
-a.nav-link:hover {
-    background-color: #ffffff;
+.home-items-container {
+    padding-right: none !important;
+}
+
+.featured-records {
+    padding-right: none !important;
+}
+
+
+a.sell {
+    color: #363333;
+    background: linear-gradient(to left, white 50%, #363333 50%) right;
+    background-size: 200%;
+    transition: .5s ease-out
+}
+
+a.sell:hover {
+    background-position: left;
+    color: white;
+}
+
+a.popular {
+    color: #363333;
+    background: linear-gradient(to left, #D4D0D0 50%, #363333 50%) right;
+    background-size: 200%;
+    transition: .5s ease-out
+}
+
+a.popular:hover {
+    background-position: left;
+    color: #D4D0D0;
+}
+
+a.log {
+    color: #363333;
+    background: linear-gradient(to left, #BBB9B9 50%, #363333 50%) right;
+    background-size: 200%;
+    transition: .5s ease-out
+}
+
+a.log:hover {
+    background-position: left;
+    color: #BBB9B9;
+}
+
+a.sign {
+    color: #363333;
+    background: linear-gradient(to left, #8D8D8D 50%, #363333 50%) right;
+    background-size: 200%;
+    transition: .5s ease-out;
+}
+
+a.sign:hover {
+    background-position: left;
+    color: #8D8D8D;
+}
+
+a.addGenre {
+    background-color: #363333;
+    color: white;
+    background: linear-gradient(to left, #F44336 50%,  white 50%) right;
+    background-size: 200%;
+    transition: .5s ease-out;
+}
+
+a.addGenre:hover {
+    background-position: left;
     color: #363333;
 }
 
-.search-bar {
-    padding-top: 100px;
-    padding-left: 50px;
+
+
+.tiny-nav {
+    list-style-type: none;
+    font-family: 'Montserrat';
+    font-size: 15px;
+    padding-top: 10px;
 }
 
+.tiny-nav-item {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.search-bar {
+    padding-top: 20px;
+    padding-left: 50px;
+    padding-right: 25px;
+}
+
+.card {
+    margin-top: 10px;
+    font-family: 'Montserrat';
+}
+
+.card-img-overlay{
+    opacity: 70%;
+    background: linear-gradient(to left, white 50%, #363333 50%) right;
+    background-size: 200%;
+    transition: .3s ease-in-out
+}
+
+.card-img-overlay:hover{
+    background-position: left;
+    color: white;
+}
+
+
+
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}

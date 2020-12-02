@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   
   get 'genre/:title' => 'static_pages#genre'
 
+  get 'users/:id/dashboard', to: 'dashboard#show', as: 'dashboard'
+
 
 
   resources :line_items

@@ -3,11 +3,9 @@
 <p id="notice"><%= notice %></p>
 
 
- <div class="col-md-2">
 
- </div>
 
-<div class="col-md-10 border-bottom border-dark">
+<div class="col-md-12 border-bottom border-dark">
             
         
         <h1>Titles</h1>
@@ -18,31 +16,31 @@
 
 
 
-    <div class="col-md-2">
-    </div>
-    <div class="col-md-10">
+    
+    <div class="col-md-12">
                     
 
             
-            <div>  
+            <div class="records pt-5">  
                 
-                <% @records.limit(24).order(:id).each_slice(3) do |slice| %>
+                <% @records.limit(24).order(:id).each_slice(4) do |slice| %>
                 <div class="row">
                     <% slice.each do |record| %>
                         <div class="col-md-3">
                             <div class="card">
+
+                            
+                                    <% if record.album_cover.attached? %>
+                                        <img src="<%=(url_for(record.album_cover))%>" class="card-img-top">
+                                    <% end %>
+
                                 <div class="card-body">
                                         <div class="card-title">
                                             <h3><%= record.title %></h3>
                                             <h5><%= record.artist %></h3>
                                         </div>
 
-                                        <div class="card-text">
-                                            <p><%= record.description %>
-                                            </p>
-                                            
-                                                
-                                        </div>
+                                    
                         
                                         
                                     

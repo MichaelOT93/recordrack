@@ -20,6 +20,7 @@ class GenresController < ApplicationController
 
   # GET /genres/1/edit
   def edit
+    
   end
 
   # POST /genres
@@ -41,6 +42,7 @@ class GenresController < ApplicationController
   # PATCH/PUT /genres/1
   # PATCH/PUT /genres/1.json
   def update
+    @genre.image_url.attach(params[:image_url])
     respond_to do |format|
       if @genre.update(genre_params)
         format.html { redirect_to @genre, notice: 'Genre was successfully updated.' }
@@ -71,5 +73,9 @@ class GenresController < ApplicationController
     # Only allow a list of trusted parameters through.
     def genre_params
       params.require(:genre).permit(:title, :image_url)
+    end
+
+    def admin_user 
+      redirect_to(root_url) unless current_user.admin?
     end
 end

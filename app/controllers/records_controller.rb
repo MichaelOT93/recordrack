@@ -7,7 +7,6 @@ class RecordsController < ApplicationController
   def index
     @records = Record.all
 
-    
   end
 
   def search
@@ -53,6 +52,7 @@ class RecordsController < ApplicationController
   # PATCH/PUT /records/1.json
   def update
     @record = Record.find(params[:id])
+    @record.album_cover.attach(params[:album_cover])
     if @record.update_attributes(record_params)
         flash[:success] = "Record updated"
         redirect_to @record
@@ -79,6 +79,6 @@ class RecordsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def record_params
-      params.require(:record).permit(:title, :artist, :genre, :description, :year, :price)
+      params.require(:record).permit(:title, :artist, :genre, :description, :year, :price, :album_cover)
     end
 
