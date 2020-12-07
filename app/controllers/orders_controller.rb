@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show  
-    @line_items = LineItem.where(order_id: params[:id])
+    @order_items = OrderItem.where(order_id: params[:id])
   end
 
   # GET /orders/new

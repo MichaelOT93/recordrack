@@ -1,4 +1,5 @@
 class DashboardController < ApplicationController
+    
 
     before_action :logged_in_user, only: [:show]
     before_action :correct_user, only: [:show]
@@ -6,6 +7,8 @@ class DashboardController < ApplicationController
     def show 
         @dashboard = User.find(params[:id])
         @order = Order.last
+        
+        
     end
 
 

@@ -1,7 +1,11 @@
 <div class="row">
 <div class="col-6">
 <table id="customers">
-    
+
+
+    <%if @order.blank? %>
+      <h3>You have no orders yet</h3>
+    <% else %>
     <% @order.order_items.each do |id,quantity| %>
       <tr>
         <% item = @order.order_items.last %>
@@ -23,6 +27,7 @@
       
      
     <%end%>
+    <% end %>
     
     
    
