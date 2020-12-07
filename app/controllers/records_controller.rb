@@ -40,8 +40,7 @@ class RecordsController < ApplicationController
     @record = current_user.records.build(record_params)
       if @record.save 
         flash[:success] = "Record was successfully created"
-        redirect_to root_url
-
+        redirect_to @record
       else 
         redirect_to new_record_path
         flash[:alert] = "Image file is too big, please try another image."

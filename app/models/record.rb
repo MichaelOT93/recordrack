@@ -13,7 +13,7 @@ class Record < ApplicationRecord
     validates :title, presence: true, length: {maximum: 50 }
     validates :artist, presence: true
     validates :price, presence: true
-    validates :album_cover, attached: true, size: { greater_than: 200.megabytes, message: "Image is too big. Please try another image."}
+    validates :album_cover, attached: true, size: { less_than: 200.megabytes, message: "Image is too big. Please try another image."}
 
 
     private
