@@ -16,7 +16,8 @@
 
  @font-face {
      font-family: 'Montserrat';
-     src: url('path-to/../../fonts/Montserrat-Light.ttf');
+     src: url('fonts/Montserrat-Light.ttf'),
+            
  }
 
 body {
@@ -184,10 +185,22 @@ a.addGenre:hover {
     color: white;
 }
 
+
+
 .search-bar {
     padding-top: 20px;
     padding-left: 50px;
     padding-right: 25px;
+    
+}
+
+
+
+.mobile-search-bar {
+    padding-top: 20px;
+    padding-left: 160px;
+    padding-right: 160px;
+    
 }
 
 .card {
@@ -230,6 +243,10 @@ a.addGenre:hover {
         display:none;
     }
 
+    .mobile-search-bar {
+        display: none;
+    }
+
 }
 
 @media screen and (max-width: 576px){
@@ -245,6 +262,8 @@ a.addGenre:hover {
     .tiny-nav-item {
         display: none;
     }
+
+    
 
   
 

@@ -1,39 +1,44 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @record.title %>
-</p>
+        <div class="col-3">
+        </div>
 
-<p>
-  <strong>Artist:</strong>
-  <%= @record.artist %>
-</p>
+        <div class="col-4">
 
-<p>
-  <strong>Genre:</strong>
-  <%= @record.genre %>
-</p>
+            <div class="card">
+                            
+                        <% if @record.album_cover.attached? %>
+                                <img src="<%=(url_for(@record.album_cover))%>" class="card-img-top">
+                        <% end %>
+                            
+                        <div class="card-body">
+                                <div class="card-title">
+                                
+                                    <h4><%= @record.title %></h4>
+                                    <h5><%= @record.artist %></h5>
+                                    <p><%= @record.year %></p>
+                                    <p><%= @record.description %></p>
+                                </div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @record.description %>
-</p>
+                
+                                
+                            
+                            
+                            
 
-<p>
-  <strong>Year:</strong>
-  <%= @record.year %>
-</p>
+                        
+                        
+                            
+                            
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <%= number_to_currency(@record.price, :unit => "€") %>
 
-<p>
-  <strong>Price:</strong>
-  <%= @record.price %>
-</p>
-
-
-<% if logged_in?  %>
-<%= link_to 'Edit', edit_record_path(@record) %> |
-<% end %>
-
-<%= link_to 'Delete', @record, method: :delete %>
-<%= link_to 'Back', records_path %>
+                          <%= button_to 'Add To Cart', line_items_path(record_id: @record) %>
+                        </div>
+                    </div>
+                    </div>
+          </div>
+      <div class="col-5">
+      </div>
