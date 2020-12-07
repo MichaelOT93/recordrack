@@ -36,6 +36,12 @@
                             <%= number_to_currency(@record.price, :unit => "€") %>
 
                           <%= button_to 'Add To Cart', line_items_path(record_id: @record) %>
+                          <% if logged_in?  %>
+                            <%= link_to 'Edit', edit_record_path(@record) %> |
+                            <%= link_to 'Delete', @record, method: :delete %>
+                          <% end %>
+
+
                         </div>
                     </div>
                     </div>
