@@ -5,6 +5,7 @@ class DashboardController < ApplicationController
 
     def show 
         @dashboard = User.find(params[:id])
+        @order = Order.last
     end
 
 

@@ -10,13 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_01_151310) do
+ActiveRecord::Schema.define(version: 2020_12_04_161558) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.integer "record_id", null: false
-    t.integer "blob_id", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -46,12 +49,43 @@ ActiveRecord::Schema.define(version: 2020_12_01_151310) do
   end
 
   create_table "line_items", force: :cascade do |t|
+    t.bigint "records_id"
+    t.bigint "cart_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "record_id", null: false
-    t.integer "cart_id", null: false
+    t.bigint "record_id", null: false
+    t.integer "quantity", default: 1
     t.index ["cart_id"], name: "index_line_items_on_cart_id"
     t.index ["record_id"], name: "index_line_items_on_record_id"
+    t.index ["records_id"], name: "index_line_items_on_records_id"
+  end
+
+  create_table "order_items", force: :cascade do |t|
+    t.string "title"
+    t.string "artist"
+    t.string "genre"
+    t.text "description"
+    t.date "year"
+    t.decimal "price"
+    t.string "album_cover"
+    t.integer "quantity"
+    t.bigint "line_items_id", null: false
+    t.bigint "order_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "record_id", null: false
+    t.index ["line_items_id"], name: "index_order_items_on_line_items_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["record_id"], name: "index_order_items_on_record_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.datetime "order_date"
+    t.string "status"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "records", force: :cascade do |t|
@@ -63,7 +97,7 @@ ActiveRecord::Schema.define(version: 2020_12_01_151310) do
     t.decimal "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.string "album_cover"
     t.index ["user_id"], name: "index_records_on_user_id"
   end
@@ -82,5 +116,10 @@ ActiveRecord::Schema.define(version: 2020_12_01_151310) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "line_items", "carts"
   add_foreign_key "line_items", "records"
+  add_foreign_key "line_items", "records", column: "records_id"
+  add_foreign_key "order_items", "line_items", column: "line_items_id"
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "order_items", "records"
+  add_foreign_key "orders", "users"
   add_foreign_key "records", "users"
 end

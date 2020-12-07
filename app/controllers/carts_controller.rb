@@ -12,6 +12,7 @@ end
 
 def show
   @cart = Cart.find(params[:id])
+  line_item = @cart.line_items
 end
 
 def new 
@@ -41,10 +42,13 @@ def destroy
   @cart.destroy if @cart.id == session[:cart_id]
   session[:id] = nil
   respond_to do |format| 
-    format.html { redirect_to cart_url, notice: "Cart was destroyed"}
+    format.html { redirect_to root_url, notice: "Cart was destroyed"}
     format.json { head :no_content }
   end
 end
+
+
+
 
 
 private

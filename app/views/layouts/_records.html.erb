@@ -11,7 +11,7 @@
 
 
 
- <div class="col-md-12 featured-records">
+ <div class="col-md-12">
 
 
 
@@ -20,7 +20,7 @@
         <% @records.limit(16).order(:id).each_slice(4) do |slice| %>
         <div class="row">
             <% slice.each do |record| %>
-                <div class="col-md-3">
+                <div class="col-6 col-md-3">
                     <div class="card">
                             
                                     <% if record.album_cover.attached? %>
@@ -47,7 +47,14 @@
                             </p>
                         </div>
                         <div class="card-footer">
-                            <%= number_to_currency(record.price, :unit => "€") %>
+                            <div class="row">
+                                <div class="col-5">
+                                    <%= number_to_currency(record.price, :unit => "€") %>
+                                </div>
+                                <div class="col-3 pl-1">
+                                    <%= button_to 'Add To Cart', line_items_path(record_id: record, :class => "btn-submit") %>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     </div>

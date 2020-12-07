@@ -1,9 +1,73 @@
-<div class="cart">
 
-    <%= render(@cart.line_items) %>
+
+
+<div class="col-md-12 border-bottom border-dark">
+            
+        
+        <h1>Your Cart</h1>
+
+        
+
+</div>
+
+
+
+
+
+    <div class="col-md-12">
+
+  
+
+
+
+
+        <div class="records pt-3">  
+            <% @cart.line_items.limit(24).order(:id).each_slice(4) do |slice| %>
+                <div class="row">
+                    <% slice.each do |line_item| %>
+                        <div class="col-6 col-md-3">
+                            <div class="card">
+                                    
+                                            <% if line_item.record.album_cover.attached? %>
+                                                <img src="<%=(url_for(line_item.record.album_cover))%>" class="card-img-top">
+                                            <% end %>
+                                    
+                                <div class="card-body">
+                                        <div class="card-title">
+                                        
+                                            <h4><%= line_item.record.title %></h4>
+                                            <h5><%= line_item.record.artist %></h5>
+                                            <h5><%= number_to_currency(line_item.record.price, :unit => "€") %></h5>
+                                        </div>
+
+                        
+                                </div>
+                            </div>
+                        </div>
+                        
+                    <% end %>
+                    
+                </div>
+                
+                
+                
+                
+            <% end %> 
+            <h3>Your Total: </h3>
+
+            <h1><%= number_to_currency(@cart.total_price, :unit => "€") %></h1>
+            
+        </div>
+        
+
+        <p><a href="/checkout" class="button">Checkout</a></p>
+
+        
+
+    </div>
+    
 
     <%= button_to 'Empty Cart', @cart, method: :delete, data: { confirm: "Are you sure?" }, class: "button is-danger"%>
 
     
 
-</div>

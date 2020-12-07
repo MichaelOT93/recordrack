@@ -3,6 +3,7 @@ class Record < ApplicationRecord
     belongs_to :user
     has_one_attached :album_cover
 
+    has_many :order_items
     has_many :line_items
 
     default_scope -> { order(created_at: :desc)}
@@ -12,6 +13,7 @@ class Record < ApplicationRecord
     validates :title, presence: true, length: {maximum: 50 }
     validates :artist, presence: true
     validates :price, presence: true
+    validates :album_cover, attached: true, size: { greater_than: 200.megabytes, message: "Image is too big. Please try another image."}
 
 
     private
@@ -21,5 +23,7 @@ class Record < ApplicationRecord
             throw :abort
         end
     end
+
+   
     
 end

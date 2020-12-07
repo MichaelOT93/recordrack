@@ -6,7 +6,7 @@ class LineItemsController < ApplicationController
     before_action :set_cart, only: [:create]
 
     def index 
-        @line_items = LineItem.all
+       @line_items = LineItem.all
     end
 
 
@@ -28,9 +28,10 @@ class LineItemsController < ApplicationController
         respond_to do |format|
             if @line_item.save
                 format.html { redirect_to @line_item.cart, notice: 'Item added to cart!'}
+                
                 format.json { render :show, status: :created, location: @line_item}
             else
-                format.html { render :new }
+                format.html { redirect_to records_url(@records) , notice: 'Sorry, that Item is already in your cart' }
                 format.json { render json: @line_item.errors, status: :unprocessable_entity}
             end
         end
@@ -42,7 +43,7 @@ class LineItemsController < ApplicationController
         @cart = Cart.find(session[:cart_id])
         @line_item.destroy
         respond_to do |format| 
-            format.html { redirect_to line_items_url, notice: 'Item was destroyed'}
+            format.html { redirect_to @line_item.cart, notice: 'Item was destroyed'}
             format.json { head :no_content}
         end
     end

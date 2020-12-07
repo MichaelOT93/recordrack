@@ -34,4 +34,6 @@
 <% if logged_in?  %>
 <%= link_to 'Edit', edit_record_path(@record) %> |
 <% end %>
+
+<%= link_to 'Delete', @record, method: :delete %>
 <%= link_to 'Back', records_path %>

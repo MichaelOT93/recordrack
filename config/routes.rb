@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :orders
   resources :genres
   get 'cart/index'
   get 'sessions/new'
@@ -25,10 +26,14 @@ Rails.application.routes.draw do
 
   get 'users/:id/dashboard', to: 'dashboard#show', as: 'dashboard'
 
+  get '/checkout', to: 'orders#create'
+  
+
 
 
   resources :line_items
   resources :carts
+  resources :order_items
 
 
   resources :users

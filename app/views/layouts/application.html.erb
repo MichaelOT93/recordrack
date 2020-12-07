@@ -11,78 +11,143 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>    
-      <div class="row">
-        <div class="sidenav col-md-3">
-          <div class="logo-container">
-            <a href="/home" class="logo-link"><%= image_tag("whitelogo.png", :alt => "recordrack-white-logo", :class => "logo") %></a>
-          </div>
-          <div class="search-bar">
-            <%=render 'layouts/search'%>
-          </div>
-        
-            <ul class="nav flex-column">
+  <body>   
 
-              
-                  <li class="nav-item">
-                      <%= link_to "Sell a Record", new_record_path, class:"nav-link sell" %>
-                  </li>
-                  <% if logged_in? %>
-                    <li class="nav-item">
-                        <%= link_to "Dashboard", dashboard_path(current_user), class:"nav-link popular" %>
-                    </li>
-                  <% else %>
-                  <li class="nav-item">
-                        <%= link_to "Popular Records", records_path, class:"nav-link popular" %>
-                  </li>
-                  <% end %>
+  <div class="mobile-container">
+      <nav class="navbar">
 
-                  <li class="nav-item">
-                    <% if logged_in? %>
-                    <%= link_to "Log Out", logout_path, class: "nav-link log", 
-                      method: :delete %>
-                    <% else %>
-                    <%= link_to "Log In", login_path, class: "nav-link log" %>
-                    <% end %>
-                  </li>
-                  <li class="nav-item">
-                      <%= link_to "Signup", signup_path, class:"nav-link sign" %>
-                  </li>
+      <button class="navbar-toggler toggler-example" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
+        aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"><span class="dark-blue-text"><i
+            class="fas fa-bars fa-1x"></i></span></button>
+
+      <!-- Navbar brand -->
+      <a class="navbar-brand" href="/home"><%= image_tag("whitelogo.png", :alt => "recordrack-white-logo", :class => "mobile-logo") %></a>
+
+      
+      <%= link_to (@cart), class: "cart-button btn" do %>
+        <i class="fas fa-shopping-cart fa-1x">
+        </i>
+      <% end %>
+      
+
+      <!-- Collapsible content -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <%= link_to "Sell a Record", new_record_path, class:"nav-link" %>
+          </li>
+          <% if logged_in? %>
+            <li class="nav-item">
+              <%= link_to "Dashboard", dashboard_path(current_user), class:"nav-link" %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "Popular Records", records_path, class:"nav-link" %>
+            </li>
+          <%end%>
+          <% if logged_in? %>
+            <li class="nav-item">
+              <%= link_to "Log Out", logout_path, class: "nav-link", 
+                          method: :delete %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "Log In", login_path, class: "nav-link" %>
+            </li>
+          <% end %>
+          <li class="nav-item">
+              <%= link_to "Signup", signup_path, class:"nav-link" %>
+            </li>
+            <% if current_user && current_user.admin? %>
+                      <li class="nav-item">
+                          <%= link_to 'Add a new Genre', new_genre_path, class: "nav-link addGenre" %>
+                      </li>
+            <% end %>
+        </ul>
+        <!-- Links -->
+
+      </div>
+      <!-- Collapsible content -->
+
+    </nav> 
+          <div class="row">
+            <div class="sidenav col-md-3">
+              <div class="logo-container">
+                <a href="/home" class="logo-link"><%= image_tag("whitelogo.png", :alt => "recordrack-white-logo", :class => "logo") %></a>
+              </div>
+              <div class="search-bar">
+                <%=render 'layouts/search'%>
+              </div>
+            
+                <ul class="nav flex-column">
+
                   
-                  <% if current_user && current_user.admin? %>
-                  <li class="nav-item">
-                      <%= link_to 'Add a new Genre', new_genre_path, class: "nav-link addGenre" %>
-                  </li>
-                  <% end %>
-            </ul>
-          </div>
-        
-            <div class="col-md-4">
-            </div>
+                      <li class="nav-item">
+                          <%= link_to "Sell a Record", new_record_path, class:"nav-link sell" %>
+                      </li>
+                      <% if logged_in? %>
+                        <li class="nav-item">
+                            <%= link_to "Dashboard", dashboard_path(current_user), class:"nav-link popular" %>
+                        </li>
+                      <% else %>
+                      <li class="nav-item">
+                            <%= link_to "Popular Records", records_path, class:"nav-link popular" %>
+                      </li>
+                      <% end %>
 
-            <div class="col-md-8">
-                <div class="row">
-                  <div class="col-md-9">
-                  </div>
-                  <div class="col-md-3">
-                  
-                    <ul class="tiny-nav">
-                      <div class="row"> 
-                          <li class="tiny-nav-item">
-                            <a href="/home">Home</a>
-                          </li>
+                      <li class="nav-item">
+                        <% if logged_in? %>
+                        <%= link_to "Log Out", logout_path, class: "nav-link log", 
+                          method: :delete %>
+                        <% else %>
+                        <%= link_to "Log In", login_path, class: "nav-link log" %>
+                        <% end %>
+                      </li>
+                      <li class="nav-item">
+                          <%= link_to "Signup", signup_path, class:"nav-link sign" %>
+                      </li>
                       
-                        <li class="tiny-nav-item">
-                          <%= link_to "View Cart", "/cart" %>
-                          </li>
+                      <% if current_user && current_user.admin? %>
+                      <li class="nav-item">
+                          <%= link_to 'Add a new Genre', new_genre_path, class: "nav-link addGenre" %>
+                      </li>
+                      <% end %>
+                </ul>
+              </div>
+            
+                <div class="col-md-4">
+                </div>
+
+                <div class="col-md-8">
+                    <div class="row">
+                      <div class="col-md-9">
                       </div>
-                    </ul>
-                  </div>
+                      <div class="col-md-3">
+                      
+                        <ul class="tiny-nav">
+                          <div class="row"> 
+                              <li class="tiny-nav-item">
+                                <a href="/home" class="tiny-nav-button btn"><i class="fas fa-home fa-1x"></i></a>
+                              </li>
+                          
+                            <li class="tiny-nav-item">
+                              <%= link_to (@cart), class: "tiny-nav-button btn" do %>
+                              <i class="fas fa-shopping-cart fa-1x">
+                              </i>
+                              <% end %>
+                              </li>
+                          </div>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="row">
+                        <%= yield %>
+                    </div>
                 </div>
-                <div class="row">
-                    <%= yield %>
-                </div>
-            </div>
+
+  </div>
           
 
 

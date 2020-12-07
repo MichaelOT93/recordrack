@@ -143,6 +143,28 @@ a.addGenre:hover {
     color: #363333;
 }
 
+.navbar {
+    background-color: #363333;
+    
+}
+
+.navbar-brand {
+    width: 20%;
+}
+
+.mobile-logo {
+    width: 100%;
+}
+
+.navbar-toggler {
+    color: white;
+}
+
+.cart-button.btn {
+    color: white;
+
+}
+
 
 
 .tiny-nav {
@@ -155,6 +177,11 @@ a.addGenre:hover {
 .tiny-nav-item {
     width: 50%;
     margin: 0 auto;
+}
+
+.tiny-nav-button:hover{
+    background-color: #67C2B6;
+    color: white;
 }
 
 .search-bar {
@@ -186,4 +213,43 @@ a.addGenre:hover {
     width: 100%;
     height: 15vw;
     object-fit: cover;
+}
+
+
+.btn-submit {
+    background-color: #67C2B6 !important;
+    color: white !important;
+}
+
+@media screen and (min-width: 577px){
+    nav.navbar {
+        display: none;
+    }
+
+    .mobile-buffer {
+        display:none;
+    }
+
+}
+
+@media screen and (max-width: 576px){
+
+    .sidenav{
+        display: none;
+    }
+
+    .card-img-top{
+        height: 30vh;
+    }
+
+    .tiny-nav-item {
+        display: none;
+    }
+
+  
+
+    
+
+
+
 }

@@ -43,7 +43,8 @@ class RecordsController < ApplicationController
         redirect_to root_url
 
       else 
-        render 'static_pages/home'
+        redirect_to new_record_path
+        flash[:alert] = "Image file is too big, please try another image."
       end
 
   end
@@ -66,7 +67,7 @@ class RecordsController < ApplicationController
   def destroy
     @record.destroy
     flash[:success] = "Record deleted"
-    redirect_to request.referrer || root_url
+    redirect_to root_url
     end
   end
 

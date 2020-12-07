@@ -3,6 +3,7 @@ class StaticPagesController < ApplicationController
         @record = current_user.records.build if logged_in?
         @genres = Genre.all
         @records = Record.all
+           
         
     end
 
